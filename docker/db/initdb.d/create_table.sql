@@ -1,7 +1,5 @@
 DELIMITER $$
 
-DROP FUNCTION IF EXISTS `schema`.`initcap`$$
-
 CREATE FUNCTION `initcap`(x char(30)) RETURNS char(30) CHARSET utf8
 READS SQL DATA
 DETERMINISTIC
@@ -21,7 +19,6 @@ DELIMITER ;
 
 DELIMITER $$
 
-DROP FUNCTION IF EXISTS `schema`.`TO_CAMEL`$$
 
 CREATE FUNCTION `TO_CAMEL`(str varchar(255)) RETURNS varchar(255) CHARSET utf8
 READS SQL DATA
@@ -107,11 +104,11 @@ DROP TABLE IF EXISTS `users_career`;
 CREATE TABLE `users_career` (
                                 `user_career_idx` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'UserCareerIdx[PK]',
                                 `user_idx` int(11) unsigned NOT NULL COMMENT 'UserIdx[FK]',
-                                `company` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CompanyName',
-                                `employee_state_code` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'EmployeeStateCode',
-                                `rank` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Rank',
-                                `career_start_date` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CareerStartDate',
-                                `career_end_date` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CareerEndDate',
+                                `company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CompanyName',
+                                `employee_state_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'EmployeeStateCode',
+                                `rank` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Rank',
+                                `career_start_date` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CareerStartDate',
+                                `career_end_date` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'CareerEndDate',
                                 PRIMARY KEY (`user_career_idx`),
                                 KEY `users_career_FK` (`user_idx`),
                                 CONSTRAINT `users_career_FK` FOREIGN KEY (`user_idx`) REFERENCES `user` (`user_idx`)
@@ -123,13 +120,12 @@ DROP TABLE IF EXISTS `users_education`;
 CREATE TABLE `users_education` (
                                    `user_education_idx` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Idx',
                                    `user_idx` int(11) unsigned NOT NULL COMMENT 'UserIdx',
-                                   `institution` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Institution',
-                                   `major` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Major',
-                                   `degree_code` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Degree Code',
-                                   `graduation_code` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'GraduationCode',
-                                   `year_of_graduation` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'YearOfGraduation',
+                                   `institution` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Institution',
+                                   `major` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Major',
+                                   `degree_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Degree Code',
+                                   `graduation_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'GraduationCode',
+                                   `year_of_graduation` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'YearOfGraduation',
                                    PRIMARY KEY (`user_education_idx`),
                                    KEY `users_education_FK` (`user_idx`),
                                    CONSTRAINT `users_education_FK` FOREIGN KEY (`user_idx`) REFERENCES `user` (`user_idx`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
