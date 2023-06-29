@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miraeweb.sys.code.dao.mybatis.MyBatisSysCodeDao">
+
+<select id="selectPreCode"  parameterType="string" resultType="com.miraeweb.sys.code.domain.SysCode">
+    SELECT  code_idx
+            ,pre_code
+            ,code
+            ,code_name
+            ,sort
+    FROM    sys_code
+    WHERE   pre_code = #{VALUE}
+    AND     code!='0000000000'
+
+</select>
+</mapper>

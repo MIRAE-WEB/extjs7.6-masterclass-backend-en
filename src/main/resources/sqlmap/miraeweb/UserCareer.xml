@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miraeweb.user.career.dao.mybatis.MyBatisUserCareerDao">
+
+    <select id="selectList" parameterType="integer" resultType="com.miraeweb.user.career.domain.UserCareer">
+        SELECT  user_career_idx
+                ,user_idx
+                ,company
+                ,employee_state_code
+                ,rank
+                ,career_start_date
+                ,career_end_date
+                ,evidance_file_prop
+        FROM    users_career
+        WHERE   user_idx = #{VALUE}
+
+    </select>
+
+    <insert id="insert" parameterType="com.miraeweb.user.career.domain.UserCareer">
+        INSERT INTO users_career(
+            user_idx
+           ,company
+           ,employee_state_code
+           ,rank
+           ,career_start_date
+           ,career_end_date
+           ,evidance_file_prop
+        )VALUES(
+           #{userIdx}
+           , #{company}
+           , #{employeeStateCode}
+           , #{rank}
+           , #{careerStartDate}
+           , #{careerEndDate}
+           , #{evidanceFileProp}
+       )
+    </insert>
+
+    <update id="update" parameterType="com.miraeweb.user.career.domain.UserCareer">
+        UPDATE  users_career
+        SET     company	= #{company}
+                ,employee_state_code	= #{employeeStateCode}
+                ,rank	= #{rank}
+                ,career_start_date	= #{careerStartDate}
+                ,career_end_date	= #{careerEndDate}
+                ,evidance_file_prop	= #{evidanceFileProp}
+        WHERE   user_career_idx	= #{userCareerIdx}
+        AND     user_idx	= #{userIdx}
+    </update>
+
+    <delete id="delete" parameterType="integer">
+    DELETE FROM users_career
+    WHERE user_career_idx = #{VALUE}
+
+    </delete>
+</mapper>

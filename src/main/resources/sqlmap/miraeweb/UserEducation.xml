@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miraeweb.user.education.dao.mybatis.MyBatisUserEducationDao">
+
+    <select id="selectList" parameterType="integer" resultType="com.miraeweb.user.education.domain.UserEducation">
+        SELECT  user_education_idx
+                ,user_idx
+                ,institution
+                ,major
+                ,degree_code
+                ,graduation_code
+                ,year_of_graduation
+        FROM    users_education
+        WHERE   user_idx= #{VALUE}
+
+    </select>
+
+    <insert id="insert" parameterType="com.miraeweb.user.education.domain.UserEducation">
+        INSERT INTO users_education(
+           user_idx
+           ,institution
+           ,major
+           ,degree_code
+           ,graduation_code
+           ,year_of_graduation
+        )VALUES(
+            #{userIdx}
+           , #{institution}
+           , #{major}
+           , #{degreeCode}
+           , #{graduationCode}
+           , #{yearOfGraduation}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.miraeweb.user.education.domain.UserEducation">
+        UPDATE  users_education
+        SET     institution	= #{institution}
+                ,major	= #{major}
+                ,degree_code	= #{degreeCode}
+                ,graduation_code	= #{graduationCode}
+                ,year_of_graduation	= #{yearOfGraduation}
+        WHERE   user_education_idx	= #{userEducationIdx}
+        AND     user_idx	= #{userIdx}
+    </update>
+
+    <delete id="delete" parameterType="integer">
+        DELETE FROM users_education
+        WHERE user_education_idx= #{VALUE}
+
+    </delete>
+</mapper>

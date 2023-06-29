@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miraeweb.user.info.dao.mybatis.MyBatisUserInfoDao">
+
+    <select id="selectList" parameterType="com.miraeweb.user.info.domain.params.UserInfoParams" resultType="com.miraeweb.user.info.domain.UserInfo">
+        SELECT  user_idx
+             , user_id
+             , user_name
+             , mobile
+             , email
+             , birth_date
+             , gender_code
+             , zip_code
+             , address1
+             , address2
+             , bank_code
+             , bank_account
+             , owner_name
+             , dept_code
+             , rank_code
+        FROM    user
+
+
+    </select>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM    user
+    </select>
+
+    <insert id="insert" parameterType="com.miraeweb.user.info.domain.UserInfo">
+        INSERT INTO user(
+             user_id
+             ,user_name
+             ,mobile
+             ,email
+             ,birth_date
+             ,gender_code
+             ,zip_code
+             ,address1
+             ,address2
+             ,bank_code
+             ,bank_account
+             ,owner_name
+             ,dept_code
+             ,rank_code
+        )VALUES(
+            #{userId}
+           , #{saltKey}
+           , #{password}
+           , #{userName}
+           , #{mobile}
+           , #{email}
+           , #{birthDate}
+           , #{genderCode}
+           , #{zipCode}
+           , #{address1}
+           , #{address2}
+           , #{bankCode}
+           , #{bankAccount}
+           , #{ownerName}
+           , #{deptCode}
+           , #{rankCode}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.miraeweb.user.info.domain.UserInfo">
+        UPDATE  user
+        SET     user_id	= #{userId}
+                ,user_name	= #{userName}
+                ,mobile	= #{mobile}
+                ,email	= #{email}
+                ,birth_date	= #{birthDate}
+                ,gender_code	= #{genderCode}
+                ,zip_code	= #{zipCode}
+                ,address1	= #{address1}
+                ,address2	= #{address2}
+                ,bank_code	= #{bankCode}
+                ,bank_account	= #{bankAccount}
+                ,owner_name	= #{ownerName}
+                ,dept_code	= #{deptCode}
+                ,rank_code	= #{rankCode}
+        WHERE   user_idx	= #{userIdx}
+    </update>
+
+    <delete id="remove" parameterType="integer">
+        DELETE FROM user
+        WHERE   user_idx=#{VALUE}
+
+    </delete>
+</mapper>
