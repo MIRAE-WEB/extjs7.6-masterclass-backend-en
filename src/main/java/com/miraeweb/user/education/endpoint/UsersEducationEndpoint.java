@@ -19,8 +19,6 @@ public class UsersEducationEndpoint {
     private UserEducationService userEducationService;
 
 
-
-
     @RequestMapping(value="/educations" ,method= RequestMethod.GET)
     public UserEducationResult selectUserEducations(
             @PathVariable("userIdx") Integer userIdx

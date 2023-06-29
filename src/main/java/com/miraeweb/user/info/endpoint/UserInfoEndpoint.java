@@ -20,15 +20,9 @@ public class UserInfoEndpoint {
 
     @RequestMapping(value="" ,method= RequestMethod.GET)
     public UserInfoResult selectUsers(
-
-            @RequestParam(required = false,value="start") Integer start,
-            @RequestParam(required = false,value="limit") Integer limit
     ){
 
-        UserInfoParams userInfoParams = UserInfoParams.builder()
-                .start(start)
-                .limit(limit)
-                .build();
+        UserInfoParams userInfoParams = UserInfoParams.builder().build();
 
         return userInfoService.selectUsers(userInfoParams);
     }
