@@ -17,7 +17,7 @@ public class UserInfo {
     private String zipCode;	// 우편번호
     private String address1;	// 주소1
     private String address2;	// 주소2
-    private String bankCd;	// 은행코드
+    private String bankCode;	// 은행코드
     private String bankAccount;	// 은행계좌
     private Integer bankAccountFileId;	// 은행계좌
     private String ownerName;	// 예금주

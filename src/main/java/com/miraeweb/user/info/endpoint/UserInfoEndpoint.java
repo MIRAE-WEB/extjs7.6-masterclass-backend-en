@@ -20,14 +20,16 @@ public class UserInfoEndpoint {
 
     @RequestMapping(value="" ,method= RequestMethod.GET)
     public UserInfoResult selectUsers(
+            @RequestParam(value = "searchTxt" ,required = false) String searchTxt
     ){
 
-        UserInfoParams userInfoParams = UserInfoParams.builder().build();
+        UserInfoParams userInfoParams = UserInfoParams.builder()
+                .searchTxt(searchTxt)
+                .build();
 
         return userInfoService.selectUsers(userInfoParams);
     }
     @RequestMapping(value="" ,method= RequestMethod.POST)
-
     public void insertUsers(
             @RequestBody UserInfo userInfo
 
@@ -36,7 +38,6 @@ public class UserInfoEndpoint {
     }
     @RequestMapping(value="/{userIdx}" ,method= RequestMethod.PUT)
     public void updateUsers(
-            @PathVariable("userIdx") Integer userIdx,
             @RequestBody UserInfo userInfo
     ){
 

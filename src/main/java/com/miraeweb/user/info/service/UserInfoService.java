@@ -33,8 +33,6 @@ public class UserInfoService {
     public void update(UserInfo userInfo) {
 
         myBatisUserInfoDao.update(userInfo);
-        Integer fileId = userInfo.getBankAccountFileId();
-
     }
 
     public void remove(Integer userIdx) {

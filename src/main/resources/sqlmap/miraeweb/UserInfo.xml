@@ -19,6 +19,10 @@
              , dept_code
              , rank_code
         FROM    user
+        WHERE   1=1
+        <if test="searchTxt!=null and !searchTxt.equals('')">
+        AND     user_id like CONCAT('%',#{searchTxt},'%')
+        </if>
 
 
     </select>
@@ -46,8 +50,6 @@
              ,rank_code
         )VALUES(
             #{userId}
-           , #{saltKey}
-           , #{password}
            , #{userName}
            , #{mobile}
            , #{email}
